@@ -1,4 +1,4 @@
-# Análise Socioecoômica e de Criminalidade em Minas Gerais
+# Análise Socioeconômica e de Criminalidade em Minas Gerais
 
 Este repositório contém o trabalho desenvolvido para o Desafio 1 do programa Zetta Lab. O objetivo é concluir como podemos avaliar e prever/visualizar os agentes/fenômenos que mais causam impactos socioeconômicos no Brasil.
 
@@ -101,7 +101,7 @@ O Heat Map de correlação evidencia relações importantes:
 
 Os mapas mostram a distribuição espacial das RISPs em Minas Gerais. O tamanho dos marcadores é proporcional ao número de crimes violentos registrados em cada região; observa‑se que as maiores concentrações de criminalidade se encontram em algumas áreas específicas, indicando possível relação com fatores socioeconômicos.
 
-🔗 [Clique aqui para abrir o mapa de calor interativo]([assets/mapa_calor_crimes_MG.html](https://jvrezendem.github.io/desafio1-zetta/assets/mapa_calor_crimes_MG.html))
+🔗 [Clique aqui para abrir o mapa de calor interativo](https://jvrezendem.github.io/desafio1-zetta/assets/mapa_calor_crimes_MG.html))
 
 Legenda:
 
