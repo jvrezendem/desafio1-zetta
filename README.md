@@ -94,7 +94,7 @@ Algumas das visualizações produzidas durante a análise exploratória estão d
   <img src="https://github.com/jvrezendem/desafio1-zetta/blob/main/assets/heatMap_Indicadores.png?raw=true" />
 </p>
 
-A matriz de correlação evidencia relações importantes: 
+O Heat Map de correlação evidencia relações importantes: 
 - Quando o **IHD (Índice de Desenvolvimento Humano)** aumenta, o **número de crimes violentos** diminui, a **renda média** é maior, a **taxa de analfabetismo** é menor e a **esperança de vida é maior**.
 
 - O número de crimes violentos em uma região é um indicador de outros problemas, uma vez que, quando ele aumenta, o **IDH** diminui, a **renda média** da região diminui, a **esperança de vida** diminui e a **taxa de analfabetismo** aumenta.
@@ -119,3 +119,82 @@ Legenda:
 | --------------- | ----------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
 | 🔴 **Vermelho** | RISP com **total de crimes acima da média estadual**  | Regiões **mais críticas**, onde há **maior incidência criminal** e, possivelmente, **piores indicadores socioeconômicos**. |
 | 🟢 **Verde**    | RISP com **total de crimes abaixo da média estadual** | Regiões **mais estáveis ou seguras**, geralmente com **melhores índices de renda, IDH e educação**.                        |
+
+<p align="center">
+  <img src="https://github.com/jvrezendem/desafio1-zetta/blob/main/assets/MapaDispersaoCriminalidade.png?raw=true" />
+</p>
+
+O gráfico de dispersão múltipla (pairplot) mostra como variáveis como renda média, taxa de analfabetismo, IDH e esperança de vida se relacionam com o número total de crimes em cada RISP. Cada ponto representa uma região (RISP), e a disposição dos pontos permite observar tendências. Se o aumento ou redução de um fator está associado ao aumento ou redução da criminalidade.
+
+| Comparação                                  | Tendência visual                     | Interpretação                                                                                                                                                                                                                                                |
+| ------------------------------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **total_crimes × renda_media**              | Tendência **decrescente**            | RISPs com **maior renda média** tendem a registrar **menos crimes**. A renda atua como fator de proteção social, reduzindo a vulnerabilidade e o envolvimento com atividades ilícitas.                                                                       |
+| **total_crimes × taxa_de_analfabetismo(%)** | Tendência **crescente**              | À medida que o **analfabetismo aumenta**, o número de crimes também cresce. Isso indica que a **baixa escolaridade** está associada a **maior incidência criminal**, possivelmente por limitar o acesso ao mercado de trabalho e aumentar a exclusão social. |
+| **total_crimes × idh_medio**                | Tendência **fortemente decrescente** | O **IDH** tem uma das **relações mais negativas** com a criminalidade. Regiões com **melhor educação, renda e saúde** apresentam **menores índices de crimes**, reforçando a influência do desenvolvimento humano sobre a segurança pública.                 |
+| **total_crimes × esperança_vida**           | Tendência **levemente decrescente**  | Regiões com **maior expectativa de vida** costumam ter **menos crimes**, o que sugere que **melhores condições de vida** e **acesso à saúde** também estão associadas a ambientes mais seguros.                                                              |
+
+
+Os gráficos de tendência indicam como duas variáveis se relacionam entre si. Cada ponto no gráfico representa uma RISP (região de Minas Gerais), e a linha mostra a tendência geral dos dados:
+
+<p align="center">
+  <img src="https://github.com/jvrezendem/desafio1-zetta/blob/main/assets/tendenciaIDHAnalf.png?raw=true" />
+</p>
+
+<p align="center">
+  <img src="https://github.com/jvrezendem/desafio1-zetta/blob/main/assets/tendenciaIDHCrimes.png?raw=true" />
+</p>
+
+<p align="center">
+  <img src="https://github.com/jvrezendem/desafio1-zetta/blob/main/assets/tendenciaIDHEsperancaVida.png?raw=true" />
+</p>
+ 
+<p align="center">
+  <img src="https://github.com/jvrezendem/desafio1-zetta/blob/main/assets/tendenciaRendaIDH.png?raw=true" />
+</p>
+
+| **Indicador**             | **Tendência**         | **Interpretação**                                                                                                                                                        |
+| ------------------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Renda média**           | Crescente             | Quanto maior a renda média das RISPs, maior o IDH indicando que o desenvolvimento econômico é um dos principais impulsionadores do desenvolvimento humano.             |
+| **Taxa de analfabetismo** | Decrescente           | Regiões com maior taxa de analfabetismo apresentam menor IDH, evidenciando o impacto direto da educação sobre o desenvolvimento humano.                                  |
+| **Esperança de vida**     | Crescente  | Quanto maior a expectativa de vida, maior o IDH mostrando que melhores condições de saúde e longevidade estão associadas a maior qualidade de vida e bem-estar social. |
+| **Total de crimes**       | Decrescente | Regiões com maior IDH tendem a registrar menos crimes, sugerindo que o desenvolvimento humano contribui para ambientes mais seguros e estáveis.                          |
+
+# Principais Insights
+
+As análises realizadas indicam que:
+
+1. Renda média e expectativa de vida são fatores com forte influência positiva no IDH das RISPs. Regiões mais ricas e com melhores condições de saúde tendem a apresentar maior desenvolvimento humano.
+
+1. Taxa de analfabetismo possui correlação negativa, sugerindo que a educação é essencial para o desenvolvimento e para a redução da criminalidade.
+
+1. Criminalidade mostra relação inversa com o IDH: RISPs mais desenvolvidas registram menos crimes violentos. Este resultado reforça a ideia de que políticas de redução de desigualdades podem contribuir para a segurança pública.
+
+# Conclusão e Resposta á pergunta principal
+
+A análise dos dados socioeconômicos e criminais das Regiões Integradas de Segurança Pública (RISPs) de Minas Gerais revela que os principais agentes de impacto socioeconômico estão diretamente ligados ao nível de desenvolvimento humano e às condições de vida da população.
+
+Os resultados indicam que regiões com maior renda média, menor taxa de analfabetismo e maior expectativa de vida apresentam, de forma consistente, índices mais altos de IDH e menores taxas de criminalidade.
+Por outro lado, áreas com maior vulnerabilidade social e educacional, marcadas por baixa renda e altos índices de analfabetismo, concentram os maiores números de crimes violentos.
+
+Essas evidências reforçam que a criminalidade em Minas Gerais não é apenas uma questão de segurança pública, mas também um reflexo das desigualdades sociais e econômicas.
+O fortalecimento de políticas voltadas à educação, geração de renda e qualidade de vida tende a promover redução sustentável da violência e melhoria do desenvolvimento humano regional.
+
+Portanto, o estudo conclui que o desenvolvimento humano (IDH) é o principal fator explicativo dos impactos socioeconômicos entre as RISPs, funcionando como um indicador das condições de renda, educação, longevidade e segurança, elementos fundamentais para compreender e enfrentar as desigualdades regionais no estado de Minas Gerais.
+
+# Como Utilizar e Reproduzir
+
+Para reproduzir a análise ou explorar os dados:
+
+1. Clone este repositório e instale as dependências (anaconda python - https://www.anaconda.com/download).
+
+1. Execute o notebook `notebooks/MG_database.ipynb`, que contém passo a passo de aquisiçãoe tratamento e  o notebook `notebooks/MG_analise.ipynb`, que contem a análise exploratória dos dados. Cada etapa está comentada para facilitar a compreensão.
+
+1. Os arquivos brutos estão em `data/bruto/` e o banco consolidado encontra‑se em `data/processado/`.
+
+# Referências
+
+- Informações das RISPs: [Secretaria de Segurança Pública de MG – Unidades Integradas](https://www.seguranca.mg.gov.br/index.php/integracao/unidades-integrad)
+
+- Crimes violentos: [Dados Abertos MG](https://dados.mg.gov.br/dataset/crimes-violentos/resource/b6900c69-6244-449f-bac8-771995fba5a7)
+
+- Dados socioeconômicos (renda, escolarização, analfabetismo, IDH, esperança de vida): [IPEA Data / IBGE](https://www.ipeadata.gov.br/Default.aspx)
