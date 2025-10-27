@@ -12,7 +12,7 @@ Devido a quantidade de dados a serem analisados para uma abordagem nacional, foi
 
 # Escolha dos Dados
 
-Cada base foi selecionada por sua relevância para representar dimensões sociais, econômicas, demográficas e de segurança pública, compondo um panorama multidimensional da realidade mineira.
+Abaixo estão listados os principais arquivos em `data/bruto` utilizados na construção da base, acompanhados de uma breve descrição e da fonte original. Cada base foi selecionada por sua relevância para representar dimensões sociais, econômicas, demográficas e de segurança pública, compondo um panorama multidimensional da realidade mineira.
 
 | **Tabela**                      | **Descrição**                                                                                                                                                                       | **Fonte Oficial**                                                                                                                                                |
 | ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -22,7 +22,83 @@ Cada base foi selecionada por sua relevância para representar dimensões sociai
 | **`renda_per_capita_2010.csv`** | Renda média per capita dos municípios mineiros no Censo 2010, corrigida pela inflação acumulada até 2025 para comparabilidade econômica.                                            | [IBGE / IPEA Data](https://www.ipeadata.gov.br/Default.aspx)                                                                                                     |
 | **`taxa_analfabetismo.csv`**    | Taxa de analfabetismo da população com 15 anos ou mais, por município, utilizada para estimar níveis de escolarização e exclusão educacional.                                       | [IBGE / IPEA Data](https://www.ipeadata.gov.br/Default.aspx)                                                                                                     |
 | **`esperanca_vida.csv`**        | Expectativa de vida média por município, utilizada como proxy de qualidade de vida e acesso à saúde.                                                                                | [IBGE / IPEA Data](https://www.ipeadata.gov.br/Default.aspx)                                                                                                     |
-| **`database_rispMG.csv`**       | Banco de dados final consolidado, com indicadores médios por RISP (população, renda, IDH, analfabetismo, expectativa de vida e criminalidade).                                      | Gerado a partir da integração e agregação de todas as tabelas anteriores.                                                                                        |
 
+Os dados municipais foram escolhidos por sua abrangência e detalhamento, permitindo consolidar informações em nível de RISP.
 
+A integração entre variáveis socioeconômicas e de segurança pública viabilizou uma análise exploratória capaz de revelar relações estruturais entre desenvolvimento humano e criminalidade.
 
+As fontes (SEJUSP, IPEA e IBGE) foram priorizadas por serem oficiais, abertas e atualizadas, garantindo credibilidade e reprodutibilidade científica ao estudo.
+
+A divisão do estado de Minas Gerais em **Regiões Integradas de Segurança Pública (RISPs)** foi adotada para **garantir uma análise territorial mais precisa e coerente com a estrutura operacional da segurança pública estadual.**
+Enquanto as divisões administrativas tradicionais (como mesorregiões ou microrregiões) refletem critérios geográficos e econômicos, as RISPs representam **delimitações criadas pela Polícia Militar e pela Secretaria de Segurança Pública com base em características populacionais, econômicas e criminais reais**.
+Essa abordagem permite **integrar dados de diferentes naturezas (socioeconômica, demográfica e criminal)** dentro de uma mesma unidade regional de gestão da segurança, facilitando a identificação de **padrões locais de vulnerabilidade e desenvolvimento**.
+Dessa forma, o estudo não apenas descreve o estado de forma estatística, mas também fornece **informações práticas e aplicáveis ao planejamento de políticas públicas, tornando a análise mais relevante e alinhada ao contexto institucional de Minas Gerais**.
+
+# Banco Processado 
+
+Os dados brutos foram combinados e agregados, resultando em uma base final armazenada em `data/processado/database_rispMG.csv`. Cada linha representa uma RISP (total de 19 regiões) e contém os seguintes campos:
+
+| Coluna                     | Descrição                                                                             |
+| -------------------------- | ------------------------------------------------------------------------------------- |
+| `risp`                     | Identificador numérico da região integrada de segurança pública.                      |
+| `total_crimes`             | Total de crimes violentos registrados na RISP no período analisado.                   |
+| `latitude`, `longitude`    | Coordenadas médias aproximadas da RISP para fins de mapa.                             |
+| `populacao`                | População total da RISP (soma das populações municipais).                             |
+| `renda_media`              | Renda per capita média (corrigida para 2025) ponderada pela população dos municípios. |
+| `idh_medio`                | Índice de Desenvolvimento Humano médio dos municípios da RISP.                        |
+| `taxa_de_analfabetismo(%)` | Taxa média de analfabetismo da população (≥ 15 anos) na RISP.                         |
+| `esperanca_vida`           | Expectativa de vida média da RISP.                                                    |
+
+### Visualização do Banco de Dados Final
+
+| RISP | Total de Crimes | População | Renda Média | IDH Médio | Taxa de Analfabetismo (%) | Esperança de Vida |
+|------|----------------:|-----------:|--------------:|-----------:|---------------------------:|-------------------:|
+| 1 | 7.800 | 1.118.836 | 1.361.68 | 0.738 | 7.37 | 75.67 |
+| 2 | 2.889 | 1.906.359 | 1.005.22 | 0.695 | 8.38 | 75.29 |
+| 3 | 4.134 | 1.574.197 | 1.150.62 | 0.673 | 9.44 | 74.83 |
+| ... | ... | ... | ... | ... | ... | ... |
+
+# Metodologia 
+
+A construção do banco de dados e da análise exploratória seguiu as etapas resumidas abaixo:
+
+1. **Coleta e integração de dados brutos** – os arquivos originais encontram‑se em data/bruto/. Eles trazem informações sobre população, renda per capita, escolarização por gênero, taxa de analfabetismo, expectativa de vida e delitos registrados por município. Essas tabelas foram obtidas de bases públicas (PMMG, IBGE/IPEA e governo de Minas Gerais).
+
+1. **Limpeza e padronização** – as colunas foram normalizadas (espaços removidos), valores ausentes foram tratados e números com separador decimal em vírgula foram convertidos para ponto. Algumas séries históricas (como renda de 2010) foram corrigidas para valores atuais usando o IPCA acumulado até 2025.
+
+1. **Relacionamento das tabelas** – todos os conjuntos foram associados por município. A relação município–RISP (`municipios_risp.csv`) permitiu agrupar os dados por região. Em seguida os valores foram agregados:
+
+- **População**: soma da população dos municípios por RISP.
+
+- **Renda média per capita (corrigida)**: média simples.
+
+- **Taxa de analfabetismo e esperança de vida**: médias ponderadas.
+
+- **Total de crimes**: soma dos registros de crimes violentos por RISP.
+
+1. Análise exploratória e visualizações – com a base final consolidada, foram calculadas correlações entre os indicadores e produzidos gráficos de dispersão e mapas. As principais relações observadas foram: renda média e IDH correlacionados positivamente; taxa de analfabetismo correlacionada negativamente com IDH; regiões com pior desenvolvimento humano concentrando mais crimes; taxa de analfabetismo correlacionada positivamente com o número de crimes; e esperança de vida e IDH correlacionados positivamente.
+
+1. Ferramentas utilizadas –
+
+- **Pandas** para manipulação e agregação das tabelas;
+
+- **Matplotlib** para construção de gráficos (correlação, dispersões);
+
+- **Folium** para visualizações geográficas interativas (mapas de calor das RISPs).
+
+# Visualizações
+
+Algumas das visualizações produzidas durante a análise exploratória estão disponíveis na pasta `assets/` e são referenciadas abaixo:
+
+<p align="center">
+  <img src="https://github.com/jvrezendem/jvrezendem/blob/main/assets/heatMap_Indicadores.png?raw=true" />
+</p>
+
+A matriz de correlação evidencia relações importantes: 
+- Quando o **IHD (Índice de Desenvolvimento Humano)** aumenta, o **número de crimes violentos** diminui, a **renda média** é maior, a **taxa de analfabetismo** é menor e a **esperança de vida é maior**.
+
+- O número de crimes violentos em uma região é um indicador de outros problemas, uma vez que, quando ele aumenta, o **IDH** diminui, a **renda média** da região diminui, a **esperança de vida** diminui e a **taxa de analfabetismo** aumenta.
+
+Os mapas mostram a distribuição espacial das RISPs em Minas Gerais. O tamanho dos marcadores é proporcional ao número de crimes violentos registrados em cada região; observa‑se que as maiores concentrações de criminalidade se encontram em algumas áreas específicas, indicando possível relação com fatores socioeconômicos.
+
+🔗 [Clique aqui para abrir o mapa interativo]()
