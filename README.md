@@ -91,7 +91,7 @@ A construção do banco de dados e da análise exploratória seguiu as etapas re
 Algumas das visualizações produzidas durante a análise exploratória estão disponíveis na pasta `assets/` e são referenciadas abaixo:
 
 <p align="center">
-  <img src="https://github.com/jvrezendem/jvrezendem/blob/main/assets/heatMap_Indicadores.png?raw=true" />
+  <img src="https://github.com/jvrezendem/desafio1-zetta/blob/main/assets/heatMap_Indicadores.png?raw=true" />
 </p>
 
 A matriz de correlação evidencia relações importantes: 
@@ -101,4 +101,21 @@ A matriz de correlação evidencia relações importantes:
 
 Os mapas mostram a distribuição espacial das RISPs em Minas Gerais. O tamanho dos marcadores é proporcional ao número de crimes violentos registrados em cada região; observa‑se que as maiores concentrações de criminalidade se encontram em algumas áreas específicas, indicando possível relação com fatores socioeconômicos.
 
-🔗 [Clique aqui para abrir o mapa interativo]()
+🔗 [Clique aqui para abrir o mapa de calor interativo](../src/msp1/mspa_calor_crimes_MG.html)
+
+Legenda:
+
+| Cor             | Critério                                              | Interpretação                                                                                                              |
+| --------------- | ----------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| 🔴 **Vermelho** | RISP com **maior número de crimes**  | Regiões **mais críticas**, onde há **maior incidência criminal** e, possivelmente, **piores indicadores socioeconômicos**. |
+| 🔵 **Azul**    | RISP com **menor número de crimes** | Regiões **mais estáveis ou seguras**, geralmente com **melhores índices de renda, IDH e educação**.                        |
+
+
+🔗 [Clique aqui para abrir o mapa de regiões criticas interativo](../src/msp2/mspa_criminalidade.html)
+
+Legenda:
+
+| Cor             | Critério                                              | Interpretação                                                                                                              |
+| --------------- | ----------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| 🔴 **Vermelho** | RISP com **total de crimes acima da média estadual**  | Regiões **mais críticas**, onde há **maior incidência criminal** e, possivelmente, **piores indicadores socioeconômicos**. |
+| 🟢 **Verde**    | RISP com **total de crimes abaixo da média estadual** | Regiões **mais estáveis ou seguras**, geralmente com **melhores índices de renda, IDH e educação**.                        |
