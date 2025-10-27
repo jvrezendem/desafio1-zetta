@@ -101,7 +101,7 @@ O Heat Map de correlação evidencia relações importantes:
 
 Os mapas mostram a distribuição espacial das RISPs em Minas Gerais. O tamanho dos marcadores é proporcional ao número de crimes violentos registrados em cada região; observa‑se que as maiores concentrações de criminalidade se encontram em algumas áreas específicas, indicando possível relação com fatores socioeconômicos.
 
-🔗 [Clique aqui para abrir o mapa de calor interativo](assets/mapa_calor_crimes_MG.html)
+🔗 [Clique aqui para abrir o mapa de calor interativo]([assets/mapa_calor_crimes_MG.html](https://jvrezendem.github.io/desafio1-zetta/assets/mapa_calor_crimes_MG.html))
 
 Legenda:
 
@@ -111,7 +111,7 @@ Legenda:
 | 🔵 **Azul**    | RISP com **menor número de crimes** | Regiões **mais estáveis ou seguras**, geralmente com **melhores índices de renda, IDH e educação**.                        |
 
 
-🔗 [Clique aqui para abrir o mapa de regiões criticas interativo](assets/mapa_criminalidade.html)
+🔗 [Clique aqui para abrir o mapa de regiões criticas interativo](https://jvrezendem.github.io/desafio1-zetta/assets/mapa_criminalidade_risp.html)
 
 Legenda:
 
